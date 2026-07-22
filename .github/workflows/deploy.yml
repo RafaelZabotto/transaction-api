@@ -68,8 +68,6 @@ jobs:
         run: |
           kubectl --kubeconfig $HOME/.kube/config apply -f k3s/app-purchase-transaction.yml
 
-      - name: Deploy no K3s
+      - name: Verificar rollout
         run: |
-          kubectl set image deployment/transaction-api \
-            transaction-api=${{ secrets.REGISTRY_SERVER }}/registry-transaction-api/transaction-api:${{ github.sha }}
-          kubectl rollout status deployment/transaction-api
+          kubectl --kubeconfig $HOME/.kube/config rollout status deployment/transaction-api --timeout=120s
