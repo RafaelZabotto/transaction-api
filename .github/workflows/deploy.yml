@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      
+
 jobs:
   test:
     name: Run tests
@@ -55,10 +55,10 @@ jobs:
       - name: Push da imagem para o registry
         run: docker push ${{ secrets.REGISTRY_SERVER }}/registry-transaction-api/transaction-api:${{ github.sha }}
 
-      - name: Configurar o kubectl
+      - name: Configurar kubeconfig
         run: |
-          echo "${{ secrets.KUBECONFIG_B64 }}" | base64 -d > kubeconfig.yaml
-          echo "KUBECONFIG=$PWD/kubeconfig.yaml" >> $GITHUB_ENV
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG_B64 }}" | base64 -d > $HOME/.kube/config
 
       - name: Substituir placeholder da imagem no manifesto
         run: |
