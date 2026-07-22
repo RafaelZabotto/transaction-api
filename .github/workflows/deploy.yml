@@ -1,11 +1,10 @@
 name: Deploy Transaction API
 
-
 on:
   push:
     branches:
       - main
-
+      
 jobs:
   test:
     name: Run tests
