@@ -70,4 +70,4 @@ jobs:
 
       - name: Verificar rollout
         run: |
-          kubectl --kubeconfig $HOME/.kube/config rollout status deployment/transaction-api --timeout=120s
+          kubectl --kubeconfig $HOME/.kube/config rollout status deployment/purchase-api --timeout=120s
